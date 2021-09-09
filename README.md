@@ -16,7 +16,7 @@ A python app to notify you to take a break from PC periodically.
   *You can change the default value by updating the script*
   
   ## Screenshots
-  ![Home](https://github.com/SKR301/BollywoodGameApp/blob/master/ScreenShots/Home.jpg)
+  ![AlertBox](https://github.com/SKR301/Get-A-Break/blob/main/Screenshot/alertBox.png)
   
   ## Contributors
   @SKR301- [Saurav Kumar](https://github.com/SKR301) <br />
