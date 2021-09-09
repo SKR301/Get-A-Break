@@ -13,6 +13,7 @@ A python app to notify you to take a break from PC periodically.
   ## Working
   1. **OK** : Start / Restart the clock. *(for 20mints)*
   2. **Snooze** : Snooze for a while. *(for 5 mints)*
+  <br />
   `You can change the default value by updating the script`
   
   ## Screenshots
