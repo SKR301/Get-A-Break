@@ -1,41 +1,37 @@
-# TODO: addd NEWtimerOK
-
 import tkinter
 import time
 
-WorkTime = 5								# enter the amount of time you wanna work
-SnoozeTime = 1								# enter snooze time
+WorkTime = 20																	# enter the amount of time you wanna work
+SnoozeTime = 10																	# enter snooze time
 CustomTime = 0
-msg = "HEY, Take a break nerd!"				# your text
+msg = "HEY, Take a break NERD!"													# your text
 
 def showAlert(root):
 	root.title("Get-A-Break")
-	root.geometry("250x100")
+	root.geometry("250x100+750+500")
 
-	alertMsg = tkinter.StringVar()
+	alertMsg = tkinter.StringVar()												#Alert MSG
 	alertMsg.set(msg)
 	label = tkinter.Message( root, textvariable=alertMsg, width = 150)
 	label.place(x=10, y=5)
 
-	enterLabel = tkinter.StringVar()
+	enterLabel = tkinter.StringVar()											#new timer label
 	enterLabel.set("Enter New Time (mints):")
 	newTimelabel = tkinter.Message( root, textvariable=enterLabel, width = 150)
 	newTimelabel.pack_forget()
 
-	newTimeInput = tkinter.Entry(root, width = 25)
+	newTimeInput = tkinter.Entry(root, width = 25)								#new timer input box
 	newTimeInput.pack_forget()
 
-	# var.set("C")
-	# newTimeOK = tkinter.Message( root, textvariable=var, width = 150)
-	# # newTimeOK.place(x=50, y=100)
-	# newTimeOK.pack_forget()
+	newTimeOK = tkinter.Button(root, text = "OK", width = 7, height = 1, command = lambda: startTimer(newTimeInput.get(), root))
+	newTimeOK.pack_forget()
 
-	dropup_img = tkinter.PhotoImage(file = "./drawable/dropup_btn.png")
-	dropup_btn = tkinter.Button(root, image = dropup_img, borderwidth = 0, command = lambda: hideNewTimeOption(newTimelabel, newTimeInput, dropdown_btn, dropup_btn))
+	dropup_img = tkinter.PhotoImage(file = "./drawable/dropup_btn.png")			#button to show custom timer (v)
+	dropup_btn = tkinter.Button(root, image = dropup_img, borderwidth = 0, command = lambda: hideNewTimeOption(newTimelabel, newTimeInput, newTimeOK, dropdown_btn, dropup_btn, root))
 	dropup_btn.place(x=25,y=55)
 
-	dropdown_img = tkinter.PhotoImage(file = "./drawable/dropdown_btn.png")
-	dropdown_btn = tkinter.Button(root, image = dropdown_img, borderwidth = 0, command = lambda: showNewTimeOption(newTimelabel, newTimeInput, dropdown_btn, dropup_btn))
+	dropdown_img = tkinter.PhotoImage(file = "./drawable/dropdown_btn.png")		#button to hide custom timer (^)
+	dropdown_btn = tkinter.Button(root, image = dropdown_img, borderwidth = 0, command = lambda: showNewTimeOption(newTimelabel, newTimeInput, newTimeOK, dropdown_btn, dropup_btn, root))
 	dropdown_btn.place(x=25,y=55)
 
 	OK = tkinter.Button(root, text = "OK", width = 7, height = 1, command = lambda: startTimer(WorkTime, root))						#restart
@@ -45,26 +41,35 @@ def showAlert(root):
 
 	root.mainloop()
 
+#starts the clock
 def startTimer(timerTime, root):
 	root.destroy()
-	print("Timer Started:")
-	print(timerTime)
-	# time.sleep(timerTime)
+	try:
+		timerTime = int(timerTime) * 60
+	except:
+		timerTime = SnoozeTime * 60
+
+	time.sleep(timerTime)
 	
 	root = tkinter.Tk()
 	showAlert(root)
 
-def showNewTimeOption(newTimelabel, newTimeInput, dropdown_btn, dropup_btn):
-	newTimelabel.place(x=10, y=75)
-	newTimeInput.place(x=15, y=95)
+#show custom timer
+def showNewTimeOption(newTimelabel, newTimeInput, newTimeOK, dropdown_btn, dropup_btn, root):
+	root.geometry("250x150+750+500")
+	newTimelabel.place(x=10, y=85)
+	newTimeInput.place(x=15, y=110)
+	newTimeOK.place(x=175,y=105)
 
 	dropdown_btn.place_forget()	
 	dropup_btn.place(x=25,y=55)
 
-
-def hideNewTimeOption(newTimelabel, newTimeInput, dropdown_btn, dropup_btn):
+#hide custom timer
+def hideNewTimeOption(newTimelabel, newTimeInput, newTimeOK, dropdown_btn, dropup_btn, root):
+	root.geometry("250x100+750+500")
 	newTimelabel.place_forget()
 	newTimeInput.place_forget()
+	newTimeOK.place_forget()
 
 	dropup_btn.place_forget()
 	dropdown_btn.place(x=25,y=55)
