@@ -1,5 +1,7 @@
 # Get-A-Break
-A python app to notify you to take a break from PC periodically.
+A python app to notify you to take a break from PC periodically.<br>
+**Keep drawable and .exe in same path**
+
 
   ## Table of Content
   - [Technologies](#technologies)
